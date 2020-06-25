@@ -16,11 +16,6 @@ variable "location" {
   type = string
 }
 
-variable "resource_group_name" {
-  description = "name of the resource group to deploy AKS cluster in"
-  type = string
-}
-
 variable "node_count" {
   description = "number of nodes to deploy"
   type = string
