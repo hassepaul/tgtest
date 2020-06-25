@@ -12,6 +12,7 @@ terraform {
 module "rg" {
   source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/tf-azurerm-mod-resource-group"
   suffix = var.name
+  location = var.location
 }
 
 
