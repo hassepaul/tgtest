@@ -21,15 +21,10 @@ module "naming" {
   suffix = var.name
 }
 
-resource "azurerm_resource_group" "aks" {
-  name     = module.rg.resource_group_name
-  location = var.location
-}
-
 resource "azurerm_kubernetes_cluster" "cluster" {
   name                    = module.naming.kubernetes_cluster.name
   location                = var.location
-  resource_group_name     = azurerm_resource_group.aks.name
+  resource_group_name     = module.rg.resource_group_name
   dns_prefix              = var.dns_prefix
   private_cluster_enabled = var.private_cluster_enabled
   default_node_pool {
