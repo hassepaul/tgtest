@@ -9,13 +9,19 @@ terraform {
   }
 }
 
+module "rg" {
+  source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/tf-azurerm-mod-resource-group"
+  suffix = var.name
+}
+
+
 module "naming" {
   source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/terraform-azurerm-naming?ref=v1.0.1"
   suffix = var.name
 }
 
 resource "azurerm_resource_group" "aks" {
-  name     = module.naming.resource_group.name
+  name     = module.rg.resource_group_name
   location = var.location
 }
 
