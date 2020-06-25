@@ -11,14 +11,18 @@ terraform {
 
 module "naming" {
   source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/terraform-azurerm-naming?ref=v1.0.1"
-  suffix = var.suffix
-  prefix = var.prefix
+  suffix = var.name
+}
+
+resource "azurerm_resource_group" "aks" {
+  name     = module.naming.resource_group.name
+  location = var.location
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
   name                    = module.naming.kubernetes_cluster.name
   location                = var.location
-  resource_group_name     = var.resource_group_name
+  resource_group_name     = azurerm_resource_group.aks.name
   dns_prefix              = var.dns_prefix
   private_cluster_enabled = var.private_cluster_enabled
   default_node_pool {

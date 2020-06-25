@@ -1,14 +1,8 @@
 # Optional input variables
 
-variable "prefix" {
+variable "name" {
   type        = list(string)
   description = "A naming prefix to be used in the creation of unique names for Azure resources."
-  default     = []
-}
-
-variable "suffix" {
-  type        = list(string)
-  description = "A naming suffix to be used in the creation of unique names for Azure resources."
   default     = []
 }
 
