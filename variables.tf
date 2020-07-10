@@ -88,3 +88,8 @@ variable availability_zones {
   description = "zones where the nodes should be deployed"
   type = list(string)
 }
+
+variable resource_group_name {
+  description = "Name of resource group"
+  type = string
+}

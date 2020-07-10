@@ -54,7 +54,7 @@ Type: `string`
 
 ### resource\_group\_name
 
-Description: name of the resource group to deploy AKS cluster in
+Description: Name of resource group
 
 Type: `string`
 
@@ -112,6 +112,14 @@ Type: `string`
 
 Default: `"standard"`
 
+### name
+
+Description: A naming prefix to be used in the creation of unique names for Azure resources.
+
+Type: `list(string)`
+
+Default: `[]`
+
 ### network\_plugin
 
 Description: network plugin for kubenretes network overlay (azure or calico)
@@ -128,14 +136,6 @@ Type: `string`
 
 Default: `"azure"`
 
-### prefix
-
-Description: A naming prefix to be used in the creation of unique names for Azure resources.
-
-Type: `list(string)`
-
-Default: `[]`
-
 ### private\_cluster\_enabled
 
 Description: true for private cluster
@@ -143,14 +143,6 @@ Description: true for private cluster
 Type: `bool`
 
 Default: `true`
-
-### suffix
-
-Description: A naming suffix to be used in the creation of unique names for Azure resources.
-
-Type: `list(string)`
-
-Default: `[]`
 
 ## Outputs
 
