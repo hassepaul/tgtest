@@ -10,16 +10,22 @@ terraform {
   }
 }
 
+module "rg" {
+  source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/tf-azurerm-mod-resource-group"
+  suffix = var.name
+  location = var.location
+}
+
+
 module "naming" {
   source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/terraform-azurerm-naming?ref=v1.0.1"
-  suffix = var.suffix
-  prefix = var.prefix
+  suffix = var.name
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
   name                    = module.naming.kubernetes_cluster.name
   location                = var.location
-  resource_group_name     = var.resource_group_name
+  resource_group_name     = module.rg.resource_group_name
   dns_prefix              = var.dns_prefix
   private_cluster_enabled = var.private_cluster_enabled
   default_node_pool {
