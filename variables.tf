@@ -1,6 +1,6 @@
 # Optional input variables
 
-variables kubernetes_version {
+variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version"
 }
