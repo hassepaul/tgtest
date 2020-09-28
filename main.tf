@@ -21,6 +21,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   resource_group_name     = var.resource_group_name
   dns_prefix              = var.dns_prefix
   private_cluster_enabled = var.private_cluster_enabled
+  kubernetes_version      = var.kubernetes_version
   default_node_pool {
     name               = var.agent_pool_name
     node_count         = var.node_count

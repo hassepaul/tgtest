@@ -1,5 +1,10 @@
 # Optional input variables
 
+variables kubernetes_version {
+  type        = string
+  description = "Kubernetes version"
+}
+
 variable "name" {
   type        = list(string)
   description = "A naming prefix to be used in the creation of unique names for Azure resources."
