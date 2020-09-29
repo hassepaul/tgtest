@@ -48,5 +48,5 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     enabled = true
   }
 
-  tags = var.default_tags
+  tags = var.tags
 }
