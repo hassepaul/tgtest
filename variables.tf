@@ -83,7 +83,7 @@ variable load_balancer_type {
   default = "standard"
 }
 
-variable "default_tags" {
+variable "tags" {
   description = "standard tags"
   type        = map(string)
   default     = {}
