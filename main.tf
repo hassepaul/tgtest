@@ -1,15 +1,3 @@
-# Terraform specific settings
-#
-
-terraform {
-  # Pin Terraform version
-  required_version = ">= 0.12.26"
-  # Pin provider version
-  required_providers {
-    azurerm = "~> 2.15.0"
-  }
-}
-
 module "naming" {
   source = "git::ssh://ProdNGAHR@vs-ssh.visualstudio.com/v3/ProdNGAHR/GT%20Cloud/terraform-azurerm-naming?ref=v1.0.1"
   suffix = var.name
