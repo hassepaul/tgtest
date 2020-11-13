@@ -61,7 +61,7 @@ resource "azurerm_monitor_diagnostic_setting" "aks-diag" {
   name                           = "diag-${module.naming.kubernetes_cluster.name}"
   target_resource_id             = azurerm_kubernetes_cluster.cluster.id
 
-  log_analytics_workspace_id     = var.log_analytics_workspace_id
+  log_analytics_workspace_id     = var.log_analytics_workspace.id
   log_analytics_destination_type = lookup(var.diagnostics_settings, "log_analytics_destination_type", null)
 
   eventhub_name                    = lookup(var.diagnostics_map, "eh_name", null)

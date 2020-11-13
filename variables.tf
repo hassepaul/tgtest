@@ -126,8 +126,3 @@ variable "diagnostics_settings" {
   type        = any
   default     = null
 }
-variable "log_analytics_workspace_id" {
-  description = "(Required) contains the log analytics workspace details for operations diagnostics"
-  type        = any
-  default     = null
-}
