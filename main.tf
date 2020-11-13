@@ -5,7 +5,7 @@ terraform {
   required_version = ">= 0.12.26"
   # Pin provider version
   required_providers {
-    azurerm = ">= 2.15.0"
+    azurerm = ">= 2.31.0"
   }
 }
 
@@ -48,4 +48,48 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   }
 
   tags = var.tags
+}
+
+
+####################################
+## Diagnostic Settings Deployment ##
+####################################
+
+resource "azurerm_monitor_diagnostic_setting" "aks-diag" {
+  count                          = (var.diagnostics_map != null && var.diagnostics_settings != null) ? 1 : 0
+
+  name                           = "diag-${module.naming.kubernetes_cluster.name}"
+  target_resource_id             = azurerm_kubernetes_cluster.cluster.id
+
+  log_analytics_workspace_id     = var.log_analytics_workspace_id
+  log_analytics_destination_type = lookup(var.diagnostics_settings, "log_analytics_destination_type", null)
+
+  eventhub_name                    = lookup(var.diagnostics_map, "eh_name", null)
+  eventhub_authorization_rule_id   = lookup(var.diagnostics_map, "eh_id", null) != null ? "${var.diagnostics_map.eh_id}/authorizationrules/RootManageSharedAccessKey" : null
+
+  storage_account_id               = var.diagnostics_map.diags_sa
+
+  dynamic "log" {
+    for_each = var.diagnostics_settings.log
+    content {
+      category = log.value[0]
+      enabled  = log.value[1]
+      retention_policy {
+        enabled = log.value[2]
+        days    = log.value[3]
+      }
+    }
+  }
+
+  dynamic "metric" {
+    for_each = var.diagnostics_settings.metric
+    content {
+      category = metric.value[0]
+      enabled  = metric.value[1]
+      retention_policy {
+        enabled = metric.value[2]
+        days    = metric.value[3]
+      }
+    }
+  }
 }
