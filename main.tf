@@ -47,6 +47,13 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     enabled = true
   }
 
+  addon_profile {
+    oms_agent {
+      enabled                    = true
+      log_analytics_workspace_id = var.log_analytics_workspace.id 
+    }
+  }
+
   tags = var.tags
 }
 
