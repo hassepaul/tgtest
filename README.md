@@ -1,5 +1,3 @@
-This module create a private AKS cluster with diagnostics (if set)
-
 ## Requirements
 
 The following requirements are needed by this module:
@@ -8,13 +6,11 @@ The following requirements are needed by this module:
 
 - azurerm (>= 2.31.0)
 
-- azurerm (2.31.0)
-
 ## Providers
 
 The following providers are used by this module:
 
-- azurerm (>= 2.31.0 2.31.0)
+- azurerm (>= 2.31.0)
 
 ## Required Inputs
 
@@ -96,6 +92,14 @@ Type: `string`
 
 Default: `"172.17.0.1/16"`
 
+### enable\_http\_app\_routing
+
+Description: (Optional) Set to true to enable HTTP application routing
+
+Type: `bool`
+
+Default: `false`
+
 ### kubernetes\_version
 
 Description: (Optional) Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade)
@@ -113,14 +117,6 @@ Type: `string`
 Default: `"standard"`
 
 ### log\_analytics\_workspace
-
-Description: (Required) contains the log analytics workspace details for operations diagnostics
-
-Type: `any`
-
-Default: `null`
-
-### log\_analytics\_workspace\_id
 
 Description: (Required) contains the log analytics workspace details for operations diagnostics
 

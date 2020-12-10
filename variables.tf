@@ -126,3 +126,9 @@ variable "diagnostics_settings" {
   type        = any
   default     = null
 }
+
+variable "enable_http_app_routing" {
+  description = "(Optional) Set to true to enable HTTP application routing"
+  type        = bool
+  default     = false
+}
