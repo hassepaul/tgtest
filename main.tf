@@ -21,13 +21,15 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   dns_prefix              = var.dns_prefix
   private_cluster_enabled = var.private_cluster_enabled
   kubernetes_version      = var.kubernetes_version
+
   default_node_pool {
-    name               = var.agent_pool_name
-    node_count         = var.node_count
-    vm_size            = var.vm_size
-    vnet_subnet_id     = var.vnet_subnet_id
-    availability_zones = var.availability_zones
-    max_pods           = var.max_pods
+    name                 = var.agent_pool_name
+    orchestrator_version = var.kubernetes_version
+    node_count           = var.node_count
+    vm_size              = var.vm_size
+    vnet_subnet_id       = var.vnet_subnet_id
+    availability_zones   = var.availability_zones
+    max_pods             = var.max_pods
   }
 
   network_profile {
