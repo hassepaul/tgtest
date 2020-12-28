@@ -92,6 +92,15 @@ resource "azurerm_monitor_diagnostic_setting" "aks-diag" {
 
   storage_account_id               = var.diagnostics_map.diags_sa
 
+  log {
+    category = "guard"
+    enabled  = false
+
+    retention_policy {
+      enabled = false
+    }
+  }
+
   dynamic "log" {
     for_each = var.diagnostics_settings.log
     content {
