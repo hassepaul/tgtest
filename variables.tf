@@ -132,3 +132,8 @@ variable "enable_http_app_routing" {
   type        = bool
   default     = false
 }
+
+variable "outbound_type" {
+  description = "(Required) The outbound (egress) routing method which should be used for this Kubernetes Cluster"
+  type        = string
+}

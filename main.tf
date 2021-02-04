@@ -39,6 +39,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     dns_service_ip     = var.dns_service_ip
     docker_bridge_cidr = var.docker_bridge_cidr
     load_balancer_sku  = var.load_balancer_type
+    outbound_type      = var.outbound_type
   }
 
   identity {
