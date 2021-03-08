@@ -15,6 +15,7 @@ variable "name" {
 variable "dns_prefix" {
   description = " (Required) DNS prefix specified when creating the managed cluster. Changing this forces a new resource to be created."
   type = string
+  default = null
 }
 
 variable "location" {

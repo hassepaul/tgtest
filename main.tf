@@ -18,7 +18,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   name                    = module.naming.kubernetes_cluster.name
   location                = var.location
   resource_group_name     = var.resource_group_name
-  dns_prefix              = var.dns_prefix
+  dns_prefix              = var.dns_prefix != null ? var.dns_prefix : module.naming.kubernetes_cluster.name
   private_cluster_enabled = var.private_cluster_enabled
   kubernetes_version      = var.kubernetes_version
 
